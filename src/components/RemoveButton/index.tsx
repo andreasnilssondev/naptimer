@@ -1,4 +1,6 @@
 import { useNaps } from 'hooks/useNaps';
+import { FaTrash } from 'react-icons/fa';
+import { Button } from 'components/Button';
 import { RemoveButtonProps } from './types';
 
 export function RemoveButton(props: RemoveButtonProps) {
@@ -10,8 +12,8 @@ export function RemoveButton(props: RemoveButtonProps) {
   };
 
   return (
-    <button type="button" onClick={handleClick}>
-      - Remove
-    </button>
+    <Button onClick={handleClick} appearance="secondary">
+      <FaTrash color="#333" />
+    </Button>
   );
 }
