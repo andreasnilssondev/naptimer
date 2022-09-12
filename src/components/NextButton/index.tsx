@@ -12,7 +12,7 @@ export function NextButton() {
   };
 
   if (isToday(currentDate)) {
-    return <span aria-role="presentation" />;
+    return <span />;
   }
 
   return (
