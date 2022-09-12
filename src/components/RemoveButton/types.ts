@@ -1,3 +1,3 @@
 export interface RemoveButtonProps {
-  startTime: Date;
+  id: string;
 }

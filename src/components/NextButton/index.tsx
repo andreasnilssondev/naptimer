@@ -1,5 +1,5 @@
 import { useCurrentDate } from 'hooks/useCurrentDate';
-import { addDays } from 'date-fns';
+import { addDays, isToday } from 'date-fns';
 import { FaChevronCircleRight } from 'react-icons/all';
 import { Button } from 'components/Button';
 
@@ -10,6 +10,10 @@ export function NextButton() {
     const nextDay = addDays(currentDate, 1);
     setCurrentDate(nextDay);
   };
+
+  if (isToday(currentDate)) {
+    return <span aria-role="presentation" />;
+  }
 
   return (
     <Button onClick={handleClick} rounded>

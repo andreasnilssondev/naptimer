@@ -22,7 +22,7 @@ function App() {
           {naps
             .filter(({ start }) => isSameDay(start, currentDate))
             .map(nap => (
-              <Nap key={nap.start} start={nap.start} end={nap.end} />
+              <Nap key={nap.id} id={nap.id} start={nap.start} end={nap.end} />
             ))}
         </div>
         <NextButton />

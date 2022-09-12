@@ -1,6 +1,9 @@
+import { ChangeEvent } from 'react';
 import { NapProps } from 'components/Nap/types';
 import { RemoveButton } from 'components/RemoveButton';
 import { LOCALE } from 'constants/locale';
+import { useNaps } from 'hooks/useNaps';
+import { setHours, setMinutes } from 'date-fns';
 import { Label, Grid } from './styled';
 
 const formatTime = (date: number) => {
@@ -8,21 +11,34 @@ const formatTime = (date: number) => {
 };
 
 export function Nap(props: NapProps) {
-  const { start, end } = props;
+  const { id, start, end } = props;
+  const { editNap } = useNaps();
+
+  const handleChangeStart = (event: ChangeEvent<HTMLInputElement>) => {
+    const [hours, minutes] = event.target.value.split(':');
+    const newStart = setMinutes(setHours(start, Number(hours)), Number(minutes));
+    editNap(id, { start: newStart.getTime() });
+  };
+
+  const handleChangeEnd = (event: ChangeEvent<HTMLInputElement>) => {
+    const [hours, minutes] = event.target.value.split(':');
+    const newEnd = setMinutes(setHours(start, Number(hours)), Number(minutes));
+    editNap(id, { end: newEnd.getTime() });
+  };
 
   return (
     <Grid>
       <Label>
         <span>Start</span>
-        <input type="time" defaultValue={formatTime(start)} required />
+        <input type="time" onChange={handleChangeStart} defaultValue={formatTime(start)} required />
       </Label>
 
       <Label>
         <span>End</span>
-        <input type="time" defaultValue={formatTime(end)} required />
+        <input type="time" onChange={handleChangeEnd} defaultValue={formatTime(end)} required />
       </Label>
 
-      <RemoveButton startTime={new Date(start)} />
+      <RemoveButton id={id} />
     </Grid>
   );
 }

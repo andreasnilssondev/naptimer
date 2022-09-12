@@ -1,18 +1,7 @@
 import { useState } from 'react';
-import {
-  addDays,
-  addHours,
-  differenceInDays,
-  getDay,
-  getMilliseconds,
-  set,
-  setDate,
-  setDay,
-  setMilliseconds,
-  startOfDay,
-} from 'date-fns';
+import { addDays, addHours, differenceInDays, startOfDay } from 'date-fns';
 import { Context } from './Context';
-import { NapProviderProps, Nap } from './types';
+import { NapProviderProps, Nap, EditNapInput } from './types';
 
 function getNaps(): Nap[] {
   return JSON.parse(localStorage.getItem('naps') ?? '[]');
@@ -32,6 +21,7 @@ export function NapProvider(props: NapProviderProps) {
     const uniqueStartTime = addDays(currentTime, daysDifference);
 
     const newNaps = naps.concat({
+      id: String(uniqueStartTime.getTime()),
       start: uniqueStartTime.getTime(),
       end: addHours(startTime, 1).getTime(),
     });
@@ -44,11 +34,43 @@ export function NapProvider(props: NapProviderProps) {
     saveNaps(newNaps);
   };
 
-  const removeNap = (startTime: Date) => {
-    const newNaps = naps.filter(nap => nap.start !== startTime.getTime());
+  const removeNap = (id: string) => {
+    const newNaps = naps.filter(nap => nap.id !== id);
     setNaps(newNaps);
     saveNaps(newNaps);
   };
 
-  return <Context.Provider value={{ naps, addNap, removeNap }}>{children}</Context.Provider>;
+  const editNap = (id: string, napToEdit: EditNapInput) => {
+    const { start, end } = napToEdit;
+
+    if (start !== undefined) {
+      const newNaps = naps.map(nap => {
+        if (nap.id === id) {
+          return { ...nap, start };
+        }
+
+        return nap;
+      });
+
+      setNaps(newNaps);
+      saveNaps(newNaps);
+    }
+
+    if (end !== undefined) {
+      const newNaps = naps.map(nap => {
+        if (nap.end === end) {
+          return { ...nap, end };
+        }
+
+        return nap;
+      });
+
+      setNaps(newNaps);
+      saveNaps(newNaps);
+    }
+  };
+
+  return (
+    <Context.Provider value={{ naps, addNap, removeNap, editNap }}>{children}</Context.Provider>
+  );
 }

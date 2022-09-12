@@ -4,11 +4,11 @@ import { Button } from 'components/Button';
 import { RemoveButtonProps } from './types';
 
 export function RemoveButton(props: RemoveButtonProps) {
-  const { startTime } = props;
+  const { id } = props;
   const { removeNap } = useNaps();
 
   const handleClick = () => {
-    removeNap(startTime);
+    removeNap(id);
   };
 
   return (
