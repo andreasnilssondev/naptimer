@@ -1,6 +1,6 @@
 import { useCurrentDate } from 'hooks/useCurrentDate';
 import { addDays } from 'date-fns';
-import { FaChevronCircleLeft } from 'react-icons/all';
+import { FaChevronLeft } from 'react-icons/all';
 import { Button } from 'components/Button';
 
 export function PreviousButton() {
@@ -13,7 +13,7 @@ export function PreviousButton() {
 
   return (
     <Button onClick={handleClick} rounded>
-      <FaChevronCircleLeft size="2rem" color="#333" />
+      <FaChevronLeft size="2rem" color="#333" />
     </Button>
   );
 }

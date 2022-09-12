@@ -16,6 +16,7 @@ const primaryStyles = css`
 `;
 
 export const StyledButton = styled.button<StyledButtonProps>`
+  background-color: transparent;
   padding: 0.5rem;
   ${props => props.$appearance === 'primary' && primaryStyles};
   ${props => props.$rounded && roundedStyles};
