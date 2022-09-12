@@ -12,4 +12,12 @@ export const Grid = styled.div`
   align-items: flex-end;
   gap: 1rem;
   margin-bottom: 1rem;
+  background-color: #ddd;
+  padding: 0.5rem 2rem;
+  border-radius: 0.3rem;
+`;
+
+export const Input = styled.input`
+  padding: 0.3rem;
+  font-size: 1.2rem;
 `;

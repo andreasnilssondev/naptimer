@@ -11,12 +11,12 @@ export function NextButton() {
     setCurrentDate(nextDay);
   };
 
-  if (isToday(currentDate)) {
-    return <span />;
-  }
-
   return (
-    <Button onClick={handleClick} rounded>
+    <Button
+      onClick={handleClick}
+      rounded
+      style={{ visibility: isToday(currentDate) ? 'hidden' : 'visible' }}
+    >
       <FaChevronRight size="2rem" color="#333" />
     </Button>
   );

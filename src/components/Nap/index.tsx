@@ -4,7 +4,7 @@ import { RemoveButton } from 'components/RemoveButton';
 import { LOCALE } from 'constants/locale';
 import { useNaps } from 'hooks/useNaps';
 import { setHours, setMinutes } from 'date-fns';
-import { Label, Grid } from './styled';
+import { Label, Grid, Input } from './styled';
 
 const formatTime = (date: number) => {
   return new Intl.DateTimeFormat(LOCALE, { hour: 'numeric', minute: 'numeric' }).format(date);
@@ -30,12 +30,12 @@ export function Nap(props: NapProps) {
     <Grid>
       <Label>
         <span>Start</span>
-        <input type="time" onChange={handleChangeStart} defaultValue={formatTime(start)} required />
+        <Input type="time" onChange={handleChangeStart} defaultValue={formatTime(start)} required />
       </Label>
 
       <Label>
         <span>End</span>
-        <input type="time" onChange={handleChangeEnd} defaultValue={formatTime(end)} required />
+        <Input type="time" onChange={handleChangeEnd} defaultValue={formatTime(end)} required />
       </Label>
 
       <RemoveButton id={id} />
