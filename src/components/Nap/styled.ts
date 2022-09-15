@@ -18,3 +18,7 @@ export const Input = styled.input`
   padding: 0.3rem;
   font-size: 1.2rem;
 `;
+
+export const Menu = styled.div`
+  margin-left: auto;
+`;
