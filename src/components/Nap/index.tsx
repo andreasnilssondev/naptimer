@@ -1,10 +1,10 @@
-import { ChangeEvent } from 'react';
-import { NapProps } from 'components/Nap/types';
-import { RemoveButton } from 'components/RemoveButton';
+import { useState } from 'react';
 import { LOCALE } from 'constants/locale';
-import { useNaps } from 'hooks/useNaps';
-import { setHours, setMinutes } from 'date-fns';
-import { Label, Grid, Input, Menu } from './styled';
+import { formatDistanceStrict, startOfMinute } from 'date-fns';
+import { EditableNap } from 'components/EditableNap';
+import { FaArrowRight, FaChevronRight } from 'react-icons/all';
+import { NapProps } from './types';
+import { Item, Grid, Menu, VerticalItem, Title } from './styled';
 
 const formatTime = (date: number) => {
   return new Intl.DateTimeFormat(LOCALE, { hour: 'numeric', minute: 'numeric' }).format(date);
@@ -12,33 +12,25 @@ const formatTime = (date: number) => {
 
 export function Nap(props: NapProps) {
   const { id, start, end } = props;
-  const { editNap } = useNaps();
+  const [editing, setEditing] = useState(false);
 
-  const handleChangeStart = (event: ChangeEvent<HTMLInputElement>) => {
-    const [hours, minutes] = event.target.value.split(':');
-    const newStart = setMinutes(setHours(start, Number(hours)), Number(minutes));
-    editNap(id, { start: newStart.getTime() });
-  };
-
-  const handleChangeEnd = (event: ChangeEvent<HTMLInputElement>) => {
-    const [hours, minutes] = event.target.value.split(':');
-    const newEnd = setMinutes(setHours(start, Number(hours)), Number(minutes));
-    editNap(id, { end: newEnd.getTime() });
-  };
+  if (editing) {
+    return <EditableNap id={id} start={start} end={end} />;
+  }
 
   return (
-    <Grid>
-      <Label>
-        <span>Start</span>
-        <Input type="time" onChange={handleChangeStart} defaultValue={formatTime(start)} required />
-      </Label>
+    <Grid onClick={() => setEditing(true)}>
+      <VerticalItem>
+        <Title>{formatDistanceStrict(startOfMinute(end), startOfMinute(start))}</Title>
+        <Item>
+          <span>{formatTime(start)}</span>
+          <FaArrowRight size="0.8rem" />
+          <span>{formatTime(end)}</span>
+        </Item>
+      </VerticalItem>
 
-      <Label>
-        <span>End</span>
-        <Input type="time" onChange={handleChangeEnd} defaultValue={formatTime(end)} required />
-      </Label>
       <Menu>
-        <RemoveButton id={id} />
+        <FaChevronRight size="1rem" />
       </Menu>
     </Grid>
   );

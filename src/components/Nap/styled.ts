@@ -1,24 +1,22 @@
 import styled from 'styled-components';
 
-export const Label = styled.label`
+export const Item = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  column-gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export const Grid = styled.div`
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
-  gap: 1rem;
-  margin-bottom: 1rem;
-`;
-
-export const Input = styled.input`
-  padding: 0.3rem;
-  font-size: 1.2rem;
+  align-items: center;
 `;
 
 export const Menu = styled.div`
   margin-left: auto;
 `;
+
+export const VerticalItem = styled.div``;
+
+export const Title = styled.h3``;
