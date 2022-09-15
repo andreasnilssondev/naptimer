@@ -1,8 +1,9 @@
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import { useNaps } from 'hooks/useNaps';
 import { useCurrentDate } from 'hooks/useCurrentDate';
 import { isToday } from 'date-fns';
 import { Button } from 'components/Button';
+import { Container } from './styled';
 
 export function AddButton() {
   const { addNap } = useNaps();
@@ -17,8 +18,10 @@ export function AddButton() {
   };
 
   return (
-    <Button onClick={handleClick}>
-      <FaPlusCircle color="#333" /> Add
-    </Button>
+    <Container>
+      <Button rounded onClick={handleClick}>
+        <FaPlus size="2rem" />
+      </Button>
+    </Container>
   );
 }

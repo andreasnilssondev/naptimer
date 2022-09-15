@@ -17,15 +17,11 @@ function App() {
     <Container>
       <Header />
       <Grid>
-        <PreviousButton />
-        <div>
-          {naps
-            .filter(({ start }) => isSameDay(start, currentDate))
-            .map(nap => (
-              <Nap key={nap.id} id={nap.id} start={nap.start} end={nap.end} />
-            ))}
-        </div>
-        <NextButton />
+        {naps
+          .filter(({ start }) => isSameDay(start, currentDate))
+          .map(nap => (
+            <Nap key={nap.id} id={nap.id} start={nap.start} end={nap.end} />
+          ))}
       </Grid>
       <AddButton />
     </Container>

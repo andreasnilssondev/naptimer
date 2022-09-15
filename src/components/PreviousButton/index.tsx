@@ -12,8 +12,8 @@ export function PreviousButton() {
   };
 
   return (
-    <Button onClick={handleClick} rounded>
-      <FaChevronLeft size="2rem" color="#333" />
+    <Button onClick={handleClick} rounded appearance="secondary">
+      <FaChevronLeft size="2rem" />
     </Button>
   );
 }

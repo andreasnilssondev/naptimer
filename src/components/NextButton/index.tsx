@@ -15,9 +15,10 @@ export function NextButton() {
     <Button
       onClick={handleClick}
       rounded
+      appearance="secondary"
       style={{ visibility: isToday(currentDate) ? 'hidden' : 'visible' }}
     >
-      <FaChevronRight size="2rem" color="#333" />
+      <FaChevronRight size="2rem" />
     </Button>
   );
 }

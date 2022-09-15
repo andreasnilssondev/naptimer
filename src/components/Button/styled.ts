@@ -12,7 +12,9 @@ const roundedStyles = css`
 `;
 
 const primaryStyles = css`
-  background-color: #ddd;
+  background-color: #3b548e;
+  color: #eee;
+  box-shadow: 0rem 0.2rem 0.5rem 0.05rem rgba(0, 0, 0, 0.3);
 `;
 
 export const StyledButton = styled.button<StyledButtonProps>`
