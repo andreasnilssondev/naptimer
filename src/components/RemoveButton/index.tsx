@@ -13,7 +13,7 @@ export function RemoveButton(props: RemoveButtonProps) {
 
   return (
     <Button onClick={handleClick} appearance="secondary">
-      <FaTrash color="#333" />
+      <FaTrash color="#ff5a5a" />
     </Button>
   );
 }

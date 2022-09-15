@@ -1,8 +1,11 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { RemoveButton } from 'components/RemoveButton';
 import { LOCALE } from 'constants/locale';
 import { useNaps } from 'hooks/useNaps';
 import { setHours, setMinutes } from 'date-fns';
+import { Button } from 'components/Button';
+import { FaCheck } from 'react-icons/all';
+import { FaTrash } from 'react-icons/fa';
 import { EditableNapProps } from './types';
 import { Label, Grid, Input, Menu } from './styled';
 
@@ -11,22 +14,32 @@ const formatTime = (date: number) => {
 };
 
 export function EditableNap(props: EditableNapProps) {
-  const { id, start, end } = props;
-  const { editNap } = useNaps();
+  const { id, start, end, onClose } = props;
+  const [startInput, setStartInput] = useState(start);
+  const [endInput, setEndInput] = useState(end);
+  const { removeNap, editNap } = useNaps();
 
   const handleChangeStart = (event: ChangeEvent<HTMLInputElement>) => {
     const [hours, minutes] = event.target.value.split(':');
     const newStart = setMinutes(setHours(start, Number(hours)), Number(minutes));
-    editNap(id, { start: newStart.getTime() });
+    setStartInput(newStart.getTime());
   };
 
   const handleChangeEnd = (event: ChangeEvent<HTMLInputElement>) => {
     const [hours, minutes] = event.target.value.split(':');
     const newEnd = setMinutes(setHours(start, Number(hours)), Number(minutes));
-    editNap(id, { end: newEnd.getTime() });
+    setEndInput(newEnd.getTime());
   };
 
-  // TODO: make clickable to edit, remove deete button and put in the editable state or "more" menu
+  const handleSave = () => {
+    editNap(id, { start: startInput, end: endInput });
+    onClose();
+  };
+
+  const handleRemove = () => {
+    removeNap(id);
+    onClose();
+  };
 
   return (
     <Grid>
@@ -40,7 +53,12 @@ export function EditableNap(props: EditableNapProps) {
         <Input type="time" onChange={handleChangeEnd} defaultValue={formatTime(end)} required />
       </Label>
       <Menu>
-        <RemoveButton id={id} />
+        <Button onClick={handleSave}>
+          <FaCheck />
+        </Button>
+        <Button onClick={handleRemove} appearance="secondary">
+          <FaTrash color="#ff5a5a" />
+        </Button>
       </Menu>
     </Grid>
   );

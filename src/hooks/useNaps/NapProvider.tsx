@@ -23,7 +23,6 @@ export function NapProvider(props: NapProviderProps) {
     const newNaps = naps.concat({
       id: String(uniqueStartTime.getTime()),
       start: uniqueStartTime.getTime(),
-      end: addHours(startTime, 1).getTime(),
     });
 
     if (naps.some(nap => nap.start === uniqueStartTime.getTime())) {

@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 export interface Nap {
   id: string;
   start: number;
-  end: number;
+  end?: number;
 }
 
 export interface EditNapInput {
