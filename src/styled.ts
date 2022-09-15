@@ -6,7 +6,3 @@ export const Container = styled.div`
   max-width: 60rem;
   margin: 0 auto;
 `;
-
-export const Grid = styled.div`
-  margin: 0 auto;
-`;

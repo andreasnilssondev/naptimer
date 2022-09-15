@@ -8,7 +8,7 @@ export const Label = styled.label`
 
 export const Grid = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
   gap: 1rem;
   margin-bottom: 1rem;
