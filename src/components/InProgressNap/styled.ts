@@ -13,7 +13,7 @@ export const Input = styled.input`
 
 export const Grid = styled.div`
   padding: 1rem;
-  box-shadow: 0 0.1rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.2rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
 `;
 
 export const InnerGrid = styled.div`
