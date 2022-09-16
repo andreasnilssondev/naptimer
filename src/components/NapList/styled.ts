@@ -6,7 +6,6 @@ export const Container = styled.ul`
 
 export const Item = styled.li`
   display: block;
-  padding: 1rem;
   border-bottom: 1px solid #ccc;
 
   &:first-child {

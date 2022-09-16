@@ -1,13 +1,11 @@
 import { ChangeEvent, useState } from 'react';
-import { RemoveButton } from 'components/RemoveButton';
 import { LOCALE } from 'constants/locale';
 import { useNaps } from 'hooks/useNaps';
-import { setHours, setMinutes } from 'date-fns';
+import { formatDistanceStrict, setHours, setMinutes, startOfMinute } from 'date-fns';
 import { Button } from 'components/Button';
-import { FaCheck } from 'react-icons/all';
-import { FaTrash } from 'react-icons/fa';
+import { FaArrowRight, FaTrash } from 'react-icons/fa';
 import { EditableNapProps } from './types';
-import { Label, Grid, Input, Menu } from './styled';
+import { Label, Grid, InnerGrid, Input, Menu, Remove, Arrow, Title } from './styled';
 
 const formatTime = (date: number) => {
   return new Intl.DateTimeFormat(LOCALE, { hour: 'numeric', minute: 'numeric' }).format(date);
@@ -43,22 +41,51 @@ export function EditableNap(props: EditableNapProps) {
 
   return (
     <Grid>
-      <Label>
-        <span>Start</span>
-        <Input type="time" onChange={handleChangeStart} defaultValue={formatTime(start)} required />
-      </Label>
+      <InnerGrid>
+        <Title>
+          {formatDistanceStrict(startOfMinute(endInput), startOfMinute(startInput), {
+            roundingMethod: 'floor',
+          })}
+        </Title>
+        <Remove>
+          <Button onClick={handleRemove} appearance="secondary">
+            <FaTrash color="#ff5a5a" />
+          </Button>
+        </Remove>
+      </InnerGrid>
 
-      <Label>
-        <span>End</span>
-        <Input type="time" onChange={handleChangeEnd} defaultValue={formatTime(end)} required />
-      </Label>
+      <InnerGrid>
+        <Label>
+          <span>Start</span>
+          <Input
+            type="time"
+            onChange={handleChangeStart}
+            value={formatTime(startInput)}
+            defaultValue={formatTime(start)}
+            required
+          />
+        </Label>
+
+        <Arrow>
+          <FaArrowRight />
+        </Arrow>
+
+        <Label>
+          <span>End</span>
+          <Input
+            type="time"
+            onChange={handleChangeEnd}
+            value={formatTime(endInput)}
+            defaultValue={formatTime(end)}
+            required
+          />
+        </Label>
+      </InnerGrid>
       <Menu>
-        <Button onClick={handleSave}>
-          <FaCheck />
+        <Button onClick={onClose} appearance="secondary">
+          Cancel
         </Button>
-        <Button onClick={handleRemove} appearance="secondary">
-          <FaTrash color="#ff5a5a" />
-        </Button>
+        <Button onClick={handleSave}>Save</Button>
       </Menu>
     </Grid>
   );

@@ -2,9 +2,6 @@ import styled, { css } from 'styled-components';
 import { StyledButtonProps } from './types';
 
 const roundedStyles = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 4rem;
   height: 4rem;
   border-radius: 99999rem;
@@ -17,9 +14,18 @@ const primaryStyles = css`
   box-shadow: 0rem 0.2rem 0.5rem 0.05rem rgba(0, 0, 0, 0.3);
 `;
 
+const secondaryStyles = css`
+  border: 1px solid #bbb;
+`;
+
 export const StyledButton = styled.button<StyledButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5rem;
   background-color: transparent;
   padding: 0.5rem;
   ${props => props.$appearance === 'primary' && primaryStyles};
+  ${props => props.$appearance === 'secondary' && secondaryStyles};
   ${props => props.$rounded && roundedStyles};
 `;

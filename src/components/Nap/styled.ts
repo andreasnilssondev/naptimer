@@ -11,6 +11,7 @@ export const Grid = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding: 1rem;
 `;
 
 export const Menu = styled.div`
@@ -19,4 +20,12 @@ export const Menu = styled.div`
 
 export const VerticalItem = styled.div``;
 
-export const Title = styled.h3``;
+export const Title = styled.h3`
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+`;
+
+export const Time = styled.p`
+  color: #565656;
+`;
