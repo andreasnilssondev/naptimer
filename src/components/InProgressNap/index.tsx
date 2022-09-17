@@ -1,16 +1,10 @@
-import { ChangeEvent, useState } from 'react';
-import {
-  formatDistanceStrict,
-  formatDistanceToNowStrict,
-  setHours,
-  setMinutes,
-  startOfMinute,
-} from 'date-fns';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { formatDistanceToNowStrict, setHours, setMinutes, startOfMinute } from 'date-fns';
 import { LOCALE } from 'constants/locale';
 import { useNaps } from 'hooks/useNaps';
 import { Button } from 'components/Button';
-import { FaArrowRight } from 'react-icons/fa';
-import { Grid, Input, InnerGrid, Title, Arrow } from './styled';
+import { FaArrowRight, FaSpinner } from 'react-icons/fa';
+import { Grid, Input, InnerGrid, Title, Arrow, Time, Progress, Rotate } from './styled';
 import { InProgressNapProps } from './types';
 
 const formatTime = (date: number) => {
@@ -20,7 +14,7 @@ const formatTime = (date: number) => {
 export function InProgressNap(props: InProgressNapProps) {
   const { id, start } = props;
   const { editNap } = useNaps();
-  const [editing, setEditing] = useState(false);
+  const [timePassed, setTimePassed] = useState('Less than a minute');
 
   const handleChangeStart = (event: ChangeEvent<HTMLInputElement>) => {
     const [hours, minutes] = event.target.value.split(':');
@@ -28,36 +22,35 @@ export function InProgressNap(props: InProgressNapProps) {
     editNap(id, { start: newStart.getTime() });
   };
 
-  const handleChangeEnd = (event: ChangeEvent<HTMLInputElement>) => {
-    const [hours, minutes] = event.target.value.split(':');
-    const newEnd = setMinutes(setHours(start, Number(hours)), Number(minutes));
-    editNap(id, { end: newEnd.getTime() });
+  const endNow = () => {
+    editNap(id, { end: new Date().getTime() });
   };
 
-  const endNow = () => {
-    editNap(id, { end: newEnd.getTime() });
-  };
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setTimePassed(formatDistanceToNowStrict(start));
+    }, 5000);
+
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, [start]);
 
   return (
     <Grid>
-      <Title>{formatDistanceToNowStrict(startOfMinute(start))}</Title>
+      <Title>{timePassed}</Title>
       <InnerGrid>
         <Input type="time" onChange={handleChangeStart} defaultValue={formatTime(start)} required />
         <Arrow>
           <FaArrowRight />
         </Arrow>
-        <Button onClick={endNow}>Start timer</Button>
-        <Button appearance="secondary" onClick={() => setEditing(true)}>
-          Set time
-        </Button>
-        {editing && (
-          <Input
-            type="time"
-            onChange={handleChangeEnd}
-            defaultValue={formatTime(new Date().getTime())}
-            required
-          />
-        )}
+        <Progress>
+          <Rotate>
+            <FaSpinner />
+          </Rotate>
+          <Time>In progress</Time>
+        </Progress>
+        <Button onClick={endNow}>End</Button>
       </InnerGrid>
     </Grid>
   );

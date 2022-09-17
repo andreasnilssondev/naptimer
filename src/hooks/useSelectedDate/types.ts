@@ -1,10 +1,10 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface ContextValues {
-  currentDate: Date;
-  setCurrentDate: Dispatch<SetStateAction<Date>>;
+  selectedDate: Date;
+  setSelectedDate: Dispatch<SetStateAction<Date>>;
 }
 
-export interface CurrentDateProviderProps {
+export interface SelectedDateProviderProps {
   children?: ReactNode;
 }

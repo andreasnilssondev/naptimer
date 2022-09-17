@@ -1,16 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { CurrentDateProvider } from 'hooks/useCurrentDate';
+import { SelectedDateProvider } from 'hooks/useSelectedDate';
 import { NapProvider } from 'hooks/useNaps';
 import App from './App';
 import './index.css';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
-    <NapProvider>
-      <CurrentDateProvider>
+    <SelectedDateProvider>
+      <NapProvider>
         <App />
-      </CurrentDateProvider>
-    </NapProvider>
+      </NapProvider>
+    </SelectedDateProvider>
   </StrictMode>
 );

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Title = styled.h3`
   font-size: 1.4rem;
@@ -23,6 +23,32 @@ export const InnerGrid = styled.div`
   column-gap: 1rem;
 `;
 
-export const Arrow = styled.div`
-  margin-bottom: 0.2rem;
+export const Arrow = styled.div``;
+
+export const Time = styled.p`
+  color: #565656;
+`;
+
+export const Progress = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5rem;
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Rotate = styled.div`
+  width: 1rem;
+  height: 1rem;
+  animation: ${rotate} 2s linear infinite;
+  transform-origin: center center;
+  line-height: 1;
 `;

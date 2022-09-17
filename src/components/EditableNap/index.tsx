@@ -57,13 +57,7 @@ export function EditableNap(props: EditableNapProps) {
       <InnerGrid>
         <Label>
           <span>Start</span>
-          <Input
-            type="time"
-            onChange={handleChangeStart}
-            value={formatTime(startInput)}
-            defaultValue={formatTime(start)}
-            required
-          />
+          <Input type="time" onChange={handleChangeStart} value={formatTime(startInput)} required />
         </Label>
 
         <Arrow>
@@ -72,13 +66,7 @@ export function EditableNap(props: EditableNapProps) {
 
         <Label>
           <span>End</span>
-          <Input
-            type="time"
-            onChange={handleChangeEnd}
-            value={formatTime(endInput)}
-            defaultValue={formatTime(end)}
-            required
-          />
+          <Input type="time" onChange={handleChangeEnd} value={formatTime(endInput)} required />
         </Label>
       </InnerGrid>
       <Menu>

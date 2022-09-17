@@ -1,14 +1,14 @@
-import { useCurrentDate } from 'hooks/useCurrentDate';
+import { useSelectedDate } from 'hooks/useSelectedDate';
 import { addDays } from 'date-fns';
 import { FaChevronLeft } from 'react-icons/all';
 import { Button } from 'components/Button';
 
 export function PreviousButton() {
-  const { currentDate, setCurrentDate } = useCurrentDate();
+  const { selectedDate, setSelectedDate } = useSelectedDate();
 
   const handleClick = () => {
-    const previousDay = addDays(currentDate, -1);
-    setCurrentDate(previousDay);
+    const previousDay = addDays(selectedDate, -1);
+    setSelectedDate(previousDay);
   };
 
   return (

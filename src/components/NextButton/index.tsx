@@ -1,14 +1,14 @@
-import { useCurrentDate } from 'hooks/useCurrentDate';
+import { useSelectedDate } from 'hooks/useSelectedDate';
 import { addDays, isToday } from 'date-fns';
 import { FaChevronRight } from 'react-icons/all';
 import { Button } from 'components/Button';
 
 export function NextButton() {
-  const { currentDate, setCurrentDate } = useCurrentDate();
+  const { selectedDate, setSelectedDate } = useSelectedDate();
 
   const handleClick = () => {
-    const nextDay = addDays(currentDate, 1);
-    setCurrentDate(nextDay);
+    const nextDay = addDays(selectedDate, 1);
+    setSelectedDate(nextDay);
   };
 
   return (
@@ -16,7 +16,7 @@ export function NextButton() {
       onClick={handleClick}
       rounded
       appearance="secondary"
-      style={{ visibility: isToday(currentDate) ? 'hidden' : 'visible' }}
+      style={{ visibility: isToday(selectedDate) ? 'hidden' : 'visible' }}
     >
       <FaChevronRight size="2rem" />
     </Button>

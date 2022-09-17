@@ -13,7 +13,7 @@ export interface EditNapInput {
 
 export interface ContextValues {
   naps: Nap[];
-  addNap: (startTime: Date) => void;
+  addNap: () => void;
   removeNap: (id: string) => void;
   editNap: (id: string, napToEdit: EditNapInput) => void;
 }

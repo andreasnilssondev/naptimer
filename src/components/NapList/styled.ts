@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.ul`
   list-style-type: none;
+  margin-bottom: 8rem;
 `;
 
 export const Item = styled.li`

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { addDays, addHours, differenceInDays, startOfDay } from 'date-fns';
+import { addDays, addHours, differenceInDays, isToday, startOfDay } from 'date-fns';
+import { useSelectedDate } from 'hooks/useSelectedDate';
 import { Context } from './Context';
 import { NapProviderProps, Nap, EditNapInput } from './types';
 
@@ -14,16 +15,23 @@ function saveNaps(naps: Nap[]) {
 export function NapProvider(props: NapProviderProps) {
   const { children } = props;
   const [naps, setNaps] = useState(getNaps());
+  const { selectedDate } = useSelectedDate();
 
-  const addNap = (startTime: Date) => {
+  const addNap = () => {
     const currentTime = new Date();
-    const daysDifference = differenceInDays(startOfDay(startTime), startOfDay(currentTime));
+    const daysDifference = differenceInDays(startOfDay(selectedDate), startOfDay(currentTime));
     const uniqueStartTime = addDays(currentTime, daysDifference);
 
-    const newNaps = naps.concat({
+    const newNap: Nap = {
       id: String(uniqueStartTime.getTime()),
       start: uniqueStartTime.getTime(),
-    });
+    };
+
+    if (isToday(selectedDate) === false) {
+      newNap.end = addHours(uniqueStartTime, 1).getTime();
+    }
+
+    const newNaps = naps.concat(newNap);
 
     if (naps.some(nap => nap.start === uniqueStartTime.getTime())) {
       throw new Error('startTime of nap must be unique');
@@ -42,31 +50,22 @@ export function NapProvider(props: NapProviderProps) {
   const editNap = (id: string, napToEdit: EditNapInput) => {
     const { start, end } = napToEdit;
 
-    if (start !== undefined) {
-      const newNaps = naps.map(nap => {
-        if (nap.id === id) {
-          return { ...nap, start };
+    const newNaps = naps.map(nap => {
+      if (nap.id === id) {
+        if (start !== undefined) {
+          nap.start = start;
         }
 
-        return nap;
-      });
-
-      setNaps(newNaps);
-      saveNaps(newNaps);
-    }
-
-    if (end !== undefined) {
-      const newNaps = naps.map(nap => {
-        if (nap.end === end) {
-          return { ...nap, end };
+        if (end !== undefined) {
+          nap.end = end;
         }
+      }
 
-        return nap;
-      });
+      return nap;
+    });
 
-      setNaps(newNaps);
-      saveNaps(newNaps);
-    }
+    setNaps(newNaps);
+    saveNaps(newNaps);
   };
 
   return (

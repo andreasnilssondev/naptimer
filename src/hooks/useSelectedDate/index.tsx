@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import { Context } from './Context';
 
-export function useCurrentDate() {
+export function useSelectedDate() {
   const context = useContext(Context);
 
   if (context === undefined) {
-    throw new Error('Missing provider for "useCurrentDate" hook');
+    throw new Error('Missing provider for "useSelectedDate" hook');
   }
 
   return context;
 }
 
-export { CurrentDateProvider } from './CurrentDateProvider';
+export { SelectedDateProvider } from './SelectedDateProvider';
