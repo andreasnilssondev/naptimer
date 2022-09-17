@@ -1,5 +1,11 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { formatDistanceToNowStrict, setHours, setMinutes, startOfMinute } from 'date-fns';
+import {
+  formatDistanceToNow,
+  formatDuration,
+  intervalToDuration,
+  setHours,
+  setMinutes,
+} from 'date-fns';
 import { LOCALE } from 'constants/locale';
 import { useNaps } from 'hooks/useNaps';
 import { Button } from 'components/Button';
@@ -14,12 +20,13 @@ const formatTime = (date: number) => {
 export function InProgressNap(props: InProgressNapProps) {
   const { id, start } = props;
   const { editNap } = useNaps();
-  const [timePassed, setTimePassed] = useState('Less than a minute');
+  const [timePassed, setTimePassed] = useState(intervalToDuration({ start, end: new Date() }));
 
   const handleChangeStart = (event: ChangeEvent<HTMLInputElement>) => {
     const [hours, minutes] = event.target.value.split(':');
     const newStart = setMinutes(setHours(start, Number(hours)), Number(minutes));
     editNap(id, { start: newStart.getTime() });
+    setTimePassed(intervalToDuration({ start: newStart, end: new Date() }));
   };
 
   const endNow = () => {
@@ -28,7 +35,7 @@ export function InProgressNap(props: InProgressNapProps) {
 
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setTimePassed(formatDistanceToNowStrict(start));
+      setTimePassed(intervalToDuration({ start, end: new Date() }));
     }, 5000);
 
     return () => {
@@ -38,7 +45,7 @@ export function InProgressNap(props: InProgressNapProps) {
 
   return (
     <Grid>
-      <Title>{timePassed}</Title>
+      <Title>{formatDuration(timePassed, { format: ['hours', 'minutes'] })}</Title>
       <InnerGrid>
         <Input type="time" onChange={handleChangeStart} defaultValue={formatTime(start)} required />
         <Arrow>

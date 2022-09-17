@@ -1,7 +1,14 @@
 import { ChangeEvent, useState } from 'react';
 import { LOCALE } from 'constants/locale';
 import { useNaps } from 'hooks/useNaps';
-import { formatDistanceStrict, setHours, setMinutes, startOfMinute } from 'date-fns';
+import {
+  formatDistanceStrict,
+  formatDuration,
+  intervalToDuration,
+  setHours,
+  setMinutes,
+  startOfMinute,
+} from 'date-fns';
 import { Button } from 'components/Button';
 import { FaArrowRight, FaTrash } from 'react-icons/fa';
 import { EditableNapProps } from './types';
@@ -39,14 +46,15 @@ export function EditableNap(props: EditableNapProps) {
     onClose();
   };
 
+  const timePassed = intervalToDuration({
+    start: startOfMinute(startInput),
+    end: startOfMinute(endInput),
+  });
+
   return (
     <Grid>
       <InnerGrid>
-        <Title>
-          {formatDistanceStrict(startOfMinute(endInput), startOfMinute(startInput), {
-            roundingMethod: 'floor',
-          })}
-        </Title>
+        <Title>{formatDuration(timePassed)}</Title>
         <Remove>
           <Button onClick={handleRemove} appearance="secondary">
             <FaTrash color="#ff5a5a" />

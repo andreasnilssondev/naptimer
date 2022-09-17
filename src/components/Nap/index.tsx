@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LOCALE } from 'constants/locale';
-import { formatDistanceStrict, startOfMinute } from 'date-fns';
+import { formatDistanceStrict, formatDuration, intervalToDuration, startOfMinute } from 'date-fns';
 import { EditableNap } from 'components/EditableNap';
 import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
 import { InProgressNap } from 'components/InProgressNap';
@@ -23,10 +23,12 @@ export function Nap(props: NapProps) {
     return <EditableNap id={id} start={start} end={end} onClose={() => setEditing(false)} />;
   }
 
+  const timePassed = intervalToDuration({ start: startOfMinute(start), end: startOfMinute(end) });
+
   return (
     <Grid onClick={() => setEditing(true)}>
       <VerticalItem>
-        <Title>{formatDistanceStrict(startOfMinute(end), startOfMinute(start))}</Title>
+        <Title>{formatDuration(timePassed)}</Title>
         <Item>
           <Time>{formatTime(start)}</Time>
           <FaArrowRight size="0.8rem" color="#565656" />
