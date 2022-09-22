@@ -22,10 +22,10 @@ export function useSwipe() {
   const handleTouchEnd = () => {
     setTransitionFinished(false);
     if (touchStartRef.current !== null) {
-      if (offsetX > window.innerWidth * 0.25) {
+      if (offsetX > window.innerWidth * 0.1) {
         setOffsetX(window.innerWidth);
         setDirection('left');
-      } else if (offsetX < window.innerWidth * -0.25) {
+      } else if (offsetX < window.innerWidth * -0.1) {
         setOffsetX(-window.innerWidth);
         setDirection('right');
       } else {
