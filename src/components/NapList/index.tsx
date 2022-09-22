@@ -1,17 +1,17 @@
 import { isSameDay } from 'date-fns';
 import { Nap } from 'components/Nap';
 import { useNaps } from 'hooks/useNaps';
-import { useSelectedDate } from 'hooks/useSelectedDate';
+import { NapListProps } from 'components/NapList/types';
 import { Container, Item } from './styled';
 
-export function NapList() {
+export function NapList(props: NapListProps) {
+  const { date } = props;
   const { naps } = useNaps();
-  const { selectedDate } = useSelectedDate();
 
   return (
     <Container>
       {naps
-        .filter(({ start }) => isSameDay(start, selectedDate))
+        .filter(({ start }) => isSameDay(start, date))
         .map(nap => (
           <Item>
             <Nap key={nap.id} id={nap.id} start={nap.start} end={nap.end} />
