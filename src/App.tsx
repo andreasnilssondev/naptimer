@@ -4,7 +4,6 @@ import { NapList } from 'components/NapList';
 import { useSelectedDate } from 'hooks/useSelectedDate';
 import { addDays } from 'date-fns';
 import { useSwipe } from 'hooks/useSwipe';
-import './App.css';
 import { NextButton } from 'components/NextButton';
 import { PreviousButton } from 'components/PreviousButton';
 import { Fragment } from 'react';
