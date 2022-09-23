@@ -4,7 +4,7 @@ import { addDays } from 'date-fns';
 
 export function useSwipe() {
   const [offsetX, setOffsetX] = useState(0);
-  const [transitionFinished, setTransitionFinished] = useState(true);
+  const [transitionInProgress, setTransitionInProgress] = useState(false);
   const [direction, setDirection] = useState<'left' | 'right' | null>(null);
   const touchStartRef = useRef<number | null>(null);
   const { selectedDate, setSelectedDate } = useSelectedDate();
@@ -20,38 +20,37 @@ export function useSwipe() {
   };
 
   const handleTouchEnd = () => {
-    setTransitionFinished(false);
-    if (touchStartRef.current !== null) {
-      if (offsetX > window.innerWidth * 0.1) {
-        setOffsetX(window.innerWidth);
-        setDirection('left');
-      } else if (offsetX < window.innerWidth * -0.1) {
-        setOffsetX(-window.innerWidth);
-        setDirection('right');
-      } else {
-        setOffsetX(0);
-        setDirection(null);
-      }
+    setTransitionInProgress(true);
+
+    if (offsetX > window.innerWidth * 0.1) {
+      setOffsetX(window.innerWidth);
+      setDirection('left');
+    } else if (offsetX < window.innerWidth * -0.1) {
+      setOffsetX(-window.innerWidth);
+      setDirection('right');
+    } else {
+      setOffsetX(0);
+      setDirection(null);
     }
+
     touchStartRef.current = null;
   };
 
   const onTransitionEnd = () => {
     if (direction === 'left') {
       setSelectedDate(addDays(selectedDate, -1));
-      setDirection(null);
     } else if (direction === 'right') {
       setSelectedDate(addDays(selectedDate, 1));
-      setDirection(null);
     }
 
+    setDirection(null);
     setOffsetX(0);
-    setTransitionFinished(true);
+    setTransitionInProgress(false);
   };
 
   const style = {
     transform: `translate(${offsetX}px)`,
-    transition: !transitionFinished ? 'transform 0.2s ease-in-out' : undefined,
+    transition: transitionInProgress ? 'transform 0.2s ease-in-out' : undefined,
   };
 
   useEffect(() => {

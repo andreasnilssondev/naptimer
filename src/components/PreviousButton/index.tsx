@@ -2,6 +2,7 @@ import { useSelectedDate } from 'hooks/useSelectedDate';
 import { addDays } from 'date-fns';
 import { FaChevronLeft } from 'react-icons/all';
 import { Button } from 'components/Button';
+import { Container } from './styled';
 
 export function PreviousButton() {
   const { selectedDate, setSelectedDate } = useSelectedDate();
@@ -12,8 +13,10 @@ export function PreviousButton() {
   };
 
   return (
-    <Button onClick={handleClick} rounded appearance="secondary">
-      <FaChevronLeft size="2rem" />
-    </Button>
+    <Container>
+      <Button onClick={handleClick} rounded appearance="secondary">
+        <FaChevronLeft size="2rem" />
+      </Button>
+    </Container>
   );
 }

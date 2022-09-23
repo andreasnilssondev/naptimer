@@ -4,8 +4,11 @@ import { NapList } from 'components/NapList';
 import { useSelectedDate } from 'hooks/useSelectedDate';
 import { addDays } from 'date-fns';
 import { useSwipe } from 'hooks/useSwipe';
-import { Container, Day, InnerContainer } from './styled';
 import './App.css';
+import { NextButton } from 'components/NextButton';
+import { PreviousButton } from 'components/PreviousButton';
+import { Fragment } from 'react';
+import { Container, Day, InnerContainer } from './styled';
 
 function App() {
   const { selectedDate } = useSelectedDate();
@@ -13,25 +16,27 @@ function App() {
   const { style, onTransitionEnd } = useSwipe();
 
   return (
-    <Container>
-      <InnerContainer style={style} onTransitionEnd={onTransitionEnd}>
-        <Day>
-          <Header date={addDays(selectedDate, -1)} />
-          <NapList date={addDays(selectedDate, -1)} />
-          <AddButton />
-        </Day>
-        <Day>
-          <Header date={selectedDate} />
-          <NapList date={selectedDate} />
-          <AddButton />
-        </Day>
-        <Day>
-          <Header date={addDays(selectedDate, 1)} />
-          <NapList date={addDays(selectedDate, 1)} />
-          <AddButton />
-        </Day>
-      </InnerContainer>
-    </Container>
+    <Fragment>
+      <PreviousButton />
+      <NextButton />
+      <AddButton />
+      <Container>
+        <InnerContainer style={style} onTransitionEnd={onTransitionEnd}>
+          <Day>
+            <Header date={addDays(selectedDate, -1)} />
+            <NapList date={addDays(selectedDate, -1)} />
+          </Day>
+          <Day>
+            <Header date={selectedDate} />
+            <NapList date={selectedDate} />
+          </Day>
+          <Day>
+            <Header date={addDays(selectedDate, 1)} />
+            <NapList date={addDays(selectedDate, 1)} />
+          </Day>
+        </InnerContainer>
+      </Container>
+    </Fragment>
   );
 }
 
