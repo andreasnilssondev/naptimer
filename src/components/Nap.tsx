@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { LOCALE } from 'constants/locale';
-import { formatDistanceStrict, formatDuration, intervalToDuration, startOfMinute } from 'date-fns';
+import { formatDuration, intervalToDuration, startOfMinute } from 'date-fns';
 import { EditableNap } from 'components/EditableNap';
 import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
 import { InProgressNap } from 'components/InProgressNap';
-import { NapProps } from './types';
-import { Item, Grid, Menu, VerticalItem, Title, Time } from './styled';
+import { Heading } from 'components/Heading';
+
+interface NapProps {
+  id: string;
+  start: number;
+  end?: number;
+}
 
 const formatTime = (date: number) => {
   return new Intl.DateTimeFormat(LOCALE, { hour: 'numeric', minute: 'numeric' }).format(date);
@@ -26,19 +31,19 @@ export function Nap(props: NapProps) {
   const timePassed = intervalToDuration({ start: startOfMinute(start), end: startOfMinute(end) });
 
   return (
-    <Grid onClick={() => setEditing(true)}>
-      <VerticalItem>
-        <Title>{formatDuration(timePassed)}</Title>
-        <Item>
-          <Time>{formatTime(start)}</Time>
+    <div className="flex justify-start items-center p-4" onClick={() => setEditing(true)}>
+      <div>
+        <Heading level="h3">{formatDuration(timePassed)}</Heading>
+        <div className="flex justify-start items-center gap-x-2">
+          <div className="text-slate-600">{formatTime(start)}</div>
           <FaArrowRight size="0.8rem" color="#565656" />
-          <Time>{formatTime(end)}</Time>
-        </Item>
-      </VerticalItem>
+          <div className="text-slate-600">{formatTime(end)}</div>
+        </div>
+      </div>
 
-      <Menu>
+      <div className="ml-auto">
         <FaChevronRight size="1rem" />
-      </Menu>
-    </Grid>
+      </div>
+    </div>
   );
 }

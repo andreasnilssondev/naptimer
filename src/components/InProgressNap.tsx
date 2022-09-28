@@ -1,17 +1,16 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import {
-  formatDistanceToNow,
-  formatDuration,
-  intervalToDuration,
-  setHours,
-  setMinutes,
-} from 'date-fns';
+import { formatDuration, intervalToDuration, setHours, setMinutes } from 'date-fns';
 import { LOCALE } from 'constants/locale';
 import { useNaps } from 'hooks/useNaps';
 import { Button } from 'components/Button';
 import { FaArrowRight, FaSpinner } from 'react-icons/fa';
-import { Grid, Input, InnerGrid, Title, Arrow, Time, Progress, Rotate } from './styled';
-import { InProgressNapProps } from './types';
+import { Heading } from 'components/Heading';
+import { Input } from 'components/Input';
+
+interface InProgressNapProps {
+  id: string;
+  start: number;
+}
 
 const formatTime = (date: number) => {
   return new Intl.DateTimeFormat(LOCALE, { hour: 'numeric', minute: 'numeric' }).format(date);
@@ -44,21 +43,21 @@ export function InProgressNap(props: InProgressNapProps) {
   }, [start]);
 
   return (
-    <Grid>
-      <Title>{formatDuration(timePassed, { format: ['hours', 'minutes'] })}</Title>
-      <InnerGrid>
+    <div className="p-4 shadow-sm">
+      <Heading level="h3">{formatDuration(timePassed, { format: ['hours', 'minutes'] })}</Heading>
+      <div className="flex justify-start items-center gap-x-4">
         <Input type="time" onChange={handleChangeStart} defaultValue={formatTime(start)} required />
-        <Arrow>
+        <div>
           <FaArrowRight />
-        </Arrow>
-        <Progress>
-          <Rotate>
+        </div>
+        <div className="flex justify-center items-center gap-x-2">
+          <div className="w-4 h-4 leading-none animate-spin origin-center">
             <FaSpinner />
-          </Rotate>
-          <Time>In progress</Time>
-        </Progress>
+          </div>
+          <p className="text-slate-500">In progress</p>
+        </div>
         <Button onClick={endNow}>End</Button>
-      </InnerGrid>
-    </Grid>
+      </div>
+    </div>
   );
 }

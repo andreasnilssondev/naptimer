@@ -1,0 +1,10 @@
+@tailwind base;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;

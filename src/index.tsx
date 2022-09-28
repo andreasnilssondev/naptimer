@@ -2,15 +2,14 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { SelectedDateProvider } from 'hooks/useSelectedDate';
 import { NapProvider } from 'hooks/useNaps';
-import { GlobalStyles } from 'components/GlobalStyles';
-import App from './App';
+import { Root } from './pages/Root';
+import './index.css';
 
 createRoot(document.getElementById('app') as HTMLElement).render(
   <StrictMode>
     <SelectedDateProvider>
       <NapProvider>
-        <GlobalStyles />
-        <App />
+        <Root />
       </NapProvider>
     </SelectedDateProvider>
   </StrictMode>

@@ -1,5 +1,5 @@
 import { LOCALE } from 'constants/locale';
-import { isToday, isTomorrow, isYesterday, formatDistanceToNow } from 'date-fns';
+import { isToday, isTomorrow, isYesterday } from 'date-fns';
 
 export function getDateName(date: Date) {
   if (isToday(date)) {

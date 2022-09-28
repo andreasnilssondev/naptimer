@@ -1,22 +1,24 @@
 import { isSameDay } from 'date-fns';
 import { Nap } from 'components/Nap';
 import { useNaps } from 'hooks/useNaps';
-import { NapListProps } from 'components/NapList/types';
-import { Container, Item } from './styled';
+
+interface NapListProps {
+  date: Date;
+}
 
 export function NapList(props: NapListProps) {
   const { date } = props;
   const { naps } = useNaps();
 
   return (
-    <Container>
+    <ul className="mb-32">
       {naps
         .filter(({ start }) => isSameDay(start, date))
         .map(nap => (
-          <Item>
+          <li className="block border-b border-b-solid border-b-slate-300">
             <Nap key={nap.id} id={nap.id} start={nap.start} end={nap.end} />
-          </Item>
+          </li>
         ))}
-    </Container>
+    </ul>
   );
 }

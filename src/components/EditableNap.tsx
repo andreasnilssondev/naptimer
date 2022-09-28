@@ -1,18 +1,18 @@
 import { ChangeEvent, useState } from 'react';
 import { LOCALE } from 'constants/locale';
 import { useNaps } from 'hooks/useNaps';
-import {
-  formatDistanceStrict,
-  formatDuration,
-  intervalToDuration,
-  setHours,
-  setMinutes,
-  startOfMinute,
-} from 'date-fns';
+import { formatDuration, intervalToDuration, setHours, setMinutes, startOfMinute } from 'date-fns';
 import { Button } from 'components/Button';
 import { FaArrowRight, FaTrash } from 'react-icons/fa';
-import { EditableNapProps } from './types';
-import { Label, Grid, InnerGrid, Input, Menu, Remove, Arrow, Title } from './styled';
+import { Heading } from 'components/Heading';
+import { Input } from 'components/Input';
+
+interface EditableNapProps {
+  id: string;
+  start: number;
+  end: number;
+  onClose: () => void;
+}
 
 const formatTime = (date: number) => {
   return new Intl.DateTimeFormat(LOCALE, { hour: 'numeric', minute: 'numeric' }).format(date);
@@ -52,37 +52,43 @@ export function EditableNap(props: EditableNapProps) {
   });
 
   return (
-    <Grid>
-      <InnerGrid>
-        <Title>{formatDuration(timePassed)}</Title>
-        <Remove>
+    <div className="p-4 shadow-sm">
+      <div className="flex justify-start items-end gap-4 mb-4">
+        <Heading level="h3">{formatDuration(timePassed)}</Heading>
+        <div className="ml-auto mb-auto">
           <Button onClick={handleRemove} appearance="secondary">
             <FaTrash color="#ff5a5a" />
           </Button>
-        </Remove>
-      </InnerGrid>
+        </div>
+      </div>
 
-      <InnerGrid>
-        <Label>
+      <div className="flex justify-start items-end gap-4 mb-4">
+        <label className="flex flex-col items-start">
           <span>Start</span>
           <Input type="time" onChange={handleChangeStart} value={formatTime(startInput)} required />
-        </Label>
+        </label>
 
-        <Arrow>
+        <div className="mb-1">
           <FaArrowRight />
-        </Arrow>
+        </div>
 
-        <Label>
+        <label className="flex flex-col items-start">
           <span>End</span>
-          <Input type="time" onChange={handleChangeEnd} value={formatTime(endInput)} required />
-        </Label>
-      </InnerGrid>
-      <Menu>
+          <input
+            className="p-1.5"
+            type="time"
+            onChange={handleChangeEnd}
+            value={formatTime(endInput)}
+            required
+          />
+        </label>
+      </div>
+      <div className="flex justify-end items-center ml-auto gap-x-4">
         <Button onClick={onClose} appearance="secondary">
           Cancel
         </Button>
         <Button onClick={handleSave}>Save</Button>
-      </Menu>
-    </Grid>
+      </div>
+    </div>
   );
 }
