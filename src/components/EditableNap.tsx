@@ -84,7 +84,7 @@ export function EditableNap(props: EditableNapProps) {
         </label>
       </div>
       <div className="flex justify-end items-center ml-auto gap-x-4">
-        <Button onClick={onClose} appearance="icon">
+        <Button onClick={onClose} appearance="secondary">
           Cancel
         </Button>
         <Button onClick={handleSave}>Save</Button>

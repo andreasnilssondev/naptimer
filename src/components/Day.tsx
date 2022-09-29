@@ -21,8 +21,8 @@ export function Day(props: DayProps) {
       )}
       onClick={() => setSelectedDate(date)}
     >
-      <span className="block font-semibold text-4xl">{getDate(date)}</span>
-      <span className="block text-xl">{getWeekdayName(date, true)}</span>
+      <span className="block font-semibold text-xl">{getDate(date)}</span>
+      <span className="block text-sm">{getWeekdayName(date, true)}</span>
     </button>
   );
 }
