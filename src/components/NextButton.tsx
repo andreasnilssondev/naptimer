@@ -12,7 +12,7 @@ export function NextButton() {
   };
 
   return (
-    <div className="fixed right-0 top-20 z-10">
+    <div className="fixed right-0 top-6 z-10">
       <Button
         onClick={handleClick}
         rounded

@@ -12,7 +12,7 @@ export function PreviousButton() {
   };
 
   return (
-    <div className="fixed left-0 top-20 z-10">
+    <div className="fixed left-0 top-6 z-10">
       <Button onClick={handleClick} rounded appearance="secondary">
         <FaChevronLeft size="100%" />
       </Button>
