@@ -7,7 +7,7 @@ export function Header() {
   const { selectedDate } = useSelectedDate();
 
   return (
-    <div className="flex justify-center items-center p-6 bg-slate-300 text-center">
+    <div className="flex justify-center items-center mb-4 text-center">
       <div>
         <Heading level="h1">{getWeekdayName(selectedDate)}</Heading>
         <p>{getDateName(selectedDate)}</p>

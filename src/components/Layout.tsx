@@ -7,5 +7,5 @@ interface Props {
 export function Layout(props: Props) {
   const { children } = props;
 
-  return <div className="h-full">{children}</div>;
+  return <div className="h-full p-4">{children}</div>;
 }

@@ -12,15 +12,13 @@ export function NextButton() {
   };
 
   return (
-    <div className="fixed right-0 top-6 z-10">
-      <Button
-        onClick={handleClick}
-        rounded
-        appearance="secondary"
-        style={{ visibility: isToday(selectedDate) ? 'hidden' : 'visible' }}
-      >
-        <FaChevronRight size="100%" />
-      </Button>
-    </div>
+    <Button
+      onClick={handleClick}
+      rounded
+      appearance="secondary"
+      style={{ visibility: isToday(selectedDate) ? 'hidden' : 'visible' }}
+    >
+      <FaChevronRight size="100%" />
+    </Button>
   );
 }

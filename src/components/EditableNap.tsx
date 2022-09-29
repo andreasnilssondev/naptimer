@@ -52,7 +52,7 @@ export function EditableNap(props: EditableNapProps) {
   });
 
   return (
-    <div className="p-4 shadow-sm">
+    <div className="p-4 shadow-sm bg-white">
       <div className="flex justify-start items-end gap-4 mb-4">
         <Heading level="h3">{formatDuration(timePassed)}</Heading>
         <div className="ml-auto mb-auto">
