@@ -12,19 +12,28 @@ export function DayList() {
     addDays(selectedDate, -2),
     addDays(selectedDate, -1),
     selectedDate,
+    addDays(selectedDate, 1),
+    addDays(selectedDate, 2),
+    addDays(selectedDate, 3),
   ];
 
   return (
     <div className="flex justify-around items-center mb-4">
-      <PreviousButton />
-      <ul className="flex justify-end items-center gap-x-8">
-        {dates.map(date => (
-          <li key={date.toString()}>
-            <Day date={date} />
-          </li>
-        ))}
-      </ul>
-      <NextButton />
+      <div className="flex-grow flex-shrink-0 basis-auto">
+        <PreviousButton />
+      </div>
+      <div className="flex-grow-0 flex-shrink overflow-x-hidden">
+        <ul className="flex justify-center items-center gap-x-8 w-full">
+          {dates.map(date => (
+            <li key={date.toString()}>
+              <Day date={date} />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="flex-grow flex-shrink-0 basis-auto">
+        <NextButton />
+      </div>
     </div>
   );
 }

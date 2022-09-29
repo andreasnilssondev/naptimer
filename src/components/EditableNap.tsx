@@ -56,7 +56,7 @@ export function EditableNap(props: EditableNapProps) {
       <div className="flex justify-start items-end gap-4 mb-4">
         <Heading level="h3">{formatDuration(timePassed)}</Heading>
         <div className="ml-auto mb-auto">
-          <Button onClick={handleRemove} appearance="secondary">
+          <Button onClick={handleRemove} appearance="icon">
             <FaTrash color="#ff5a5a" />
           </Button>
         </div>
@@ -84,7 +84,7 @@ export function EditableNap(props: EditableNapProps) {
         </label>
       </div>
       <div className="flex justify-end items-center ml-auto gap-x-4">
-        <Button onClick={onClose} appearance="secondary">
+        <Button onClick={onClose} appearance="icon">
           Cancel
         </Button>
         <Button onClick={handleSave}>Save</Button>

@@ -12,7 +12,7 @@ export function PreviousButton() {
   };
 
   return (
-    <Button onClick={handleClick} rounded appearance="secondary">
+    <Button onClick={handleClick} appearance="icon">
       <FaChevronLeft size="100%" />
     </Button>
   );

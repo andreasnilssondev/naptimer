@@ -14,8 +14,7 @@ export function NextButton() {
   return (
     <Button
       onClick={handleClick}
-      rounded
-      appearance="secondary"
+      appearance="icon"
       style={{ visibility: isToday(selectedDate) ? 'hidden' : 'visible' }}
     >
       <FaChevronRight size="100%" />

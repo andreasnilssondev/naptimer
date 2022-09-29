@@ -15,7 +15,7 @@ export function RemoveButton(props: RemoveButtonProps) {
   };
 
   return (
-    <Button onClick={handleClick} appearance="secondary">
+    <Button onClick={handleClick} appearance="icon">
       <FaTrash size="100%" color="#ff5a5a" />
     </Button>
   );

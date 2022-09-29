@@ -1,5 +1,5 @@
 import { getWeekdayName } from 'utils/date/getWeekdayName';
-import { getDate } from 'date-fns';
+import { getDate, isFuture } from 'date-fns';
 import { useSelectedDate } from 'hooks/useSelectedDate';
 import classNames from 'classnames';
 import { Heading } from 'components/Heading';
@@ -16,7 +16,8 @@ export function Day(props: DayProps) {
     <button
       className={classNames(
         'border text-center p-4 border rounded-lg shadow-md',
-        selectedDate === date ? 'bg-sky-900 text-slate-50' : 'bg-gray-50'
+        selectedDate === date ? 'bg-sky-800 text-slate-50' : 'bg-gray-50',
+        isFuture(date) && 'invisible'
       )}
       onClick={() => setSelectedDate(date)}
     >
