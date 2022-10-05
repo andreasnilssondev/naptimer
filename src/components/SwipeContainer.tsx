@@ -12,7 +12,7 @@ export function SwipeContainer() {
       <div
         style={style}
         onTransitionEnd={onTransitionEnd}
-        className="flex justify-center items-start"
+        className="flex justify-center items-start gap-x-4"
       >
         <div className="grow shrink-0 basis-full">
           <NapList date={addDays(selectedDate, -1)} />

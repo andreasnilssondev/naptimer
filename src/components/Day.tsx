@@ -15,8 +15,8 @@ export function Day(props: DayProps) {
   return (
     <button
       className={classNames(
-        'border text-center p-4 border rounded-lg shadow-md',
-        selectedDate === date ? 'bg-sky-800 text-slate-50' : 'bg-gray-50',
+        'w-16 h-16 text-center rounded-full',
+        selectedDate === date && 'bg-sky-800 text-slate-50',
         isFuture(date) && 'invisible'
       )}
       onClick={() => setSelectedDate(date)}
