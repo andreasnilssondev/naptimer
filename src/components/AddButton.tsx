@@ -8,7 +8,9 @@ export function AddButton() {
   return (
     <div className="fixed right-10 bottom-20 z-10">
       <Button rounded onClick={addNap}>
-        <FaPlus size="2rem" />
+        <span className="w-8 h-8">
+          <FaPlus size="100%" />
+        </span>
       </Button>
     </div>
   );

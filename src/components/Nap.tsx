@@ -36,13 +36,17 @@ export function Nap(props: NapProps) {
         <Heading level="h3">{formatDuration(timePassed)}</Heading>
         <div className="flex justify-start items-center gap-x-2">
           <div className="text-slate-600">{formatTime(start)}</div>
-          <FaArrowRight size="0.8rem" color="#565656" />
+          <div className="w-4 h-4">
+            <FaArrowRight size="100%" color="#565656" />
+          </div>
           <div className="text-slate-600">{formatTime(end)}</div>
         </div>
       </div>
 
       <div className="ml-auto">
-        <FaChevronRight size="1rem" />
+        <div className="w-4 h-4">
+          <FaChevronRight size="100%" />
+        </div>
       </div>
     </div>
   );
