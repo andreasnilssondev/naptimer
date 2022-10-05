@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Context } from './Context';
-import { SelectedDateProviderProps } from './types';
+
+interface SelectedDateProviderProps {
+  children?: ReactNode;
+}
 
 export function SelectedDateProvider(props: SelectedDateProviderProps) {
   const { children } = props;
