@@ -1,0 +1,16 @@
+{
+  "short_name": "Naptimer",
+  "name": "Naptimer",
+  "description": "keep track of naps",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#075985",
+  "theme_color": "#FFFFFF",
+  "display": "standalone"
+}
