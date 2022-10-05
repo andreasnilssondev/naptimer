@@ -15,8 +15,11 @@ export function NapList(props: NapListProps) {
       {naps
         .filter(({ start }) => isSameDay(start, date))
         .map(nap => (
-          <li className="flex-grow flex-shrink-0 basis-full bg-gray-50 shadow-md rounded-xl border">
-            <Nap key={nap.id} id={nap.id} start={nap.start} end={nap.end} />
+          <li
+            key={nap.id}
+            className="flex-grow flex-shrink-0 basis-full bg-gray-50 shadow-md rounded-xl border"
+          >
+            <Nap id={nap.id} start={nap.start} end={nap.end} />
           </li>
         ))}
     </ul>
