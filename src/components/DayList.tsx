@@ -18,7 +18,7 @@ export function DayList() {
   ];
 
   return (
-    <div className="flex justify-center items-center gap-x-2 mb-4 p-4 bg-gray-50 border-b border-t-2 border-t-gray-300 border-solid">
+    <div className="flex justify-center items-center gap-x-2 mb-4 p-4 bg-gray-50 border-b">
       <div>
         <PreviousButton />
       </div>
