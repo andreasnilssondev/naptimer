@@ -55,9 +55,9 @@ export function EditableNap(props: EditableNapProps) {
     <div className="p-4 shadow-sm bg-white">
       <div className="flex justify-start items-end gap-4 mb-4">
         <Heading level="h3">{formatDuration(timePassed)}</Heading>
-        <div className="ml-auto mb-auto">
+        <div className="ml-auto mb-auto text-red-600">
           <Button onClick={handleRemove} appearance="icon">
-            <FaTrash color="#ff5a5a" />
+            <FaTrash />
           </Button>
         </div>
       </div>
@@ -68,19 +68,13 @@ export function EditableNap(props: EditableNapProps) {
           <Input type="time" onChange={handleChangeStart} value={formatTime(startInput)} required />
         </label>
 
-        <div className="mb-1">
+        <div className="mb-4">
           <FaArrowRight />
         </div>
 
         <label className="flex flex-col items-start">
           <span>End</span>
-          <input
-            className="p-1.5"
-            type="time"
-            onChange={handleChangeEnd}
-            value={formatTime(endInput)}
-            required
-          />
+          <Input type="time" onChange={handleChangeEnd} value={formatTime(endInput)} required />
         </label>
       </div>
       <div className="flex justify-end items-center ml-auto gap-x-4">

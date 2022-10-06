@@ -15,7 +15,7 @@ export function Button(props: ButtonProps) {
     <button
       className={classNames(
         'flex justify-center items-center gap-x-2',
-        appearance === 'primary' && 'p-2 bg-sky-800 text-slate-50 shadow',
+        appearance === 'primary' && 'py-2 px-4 bg-sky-800 text-slate-50 shadow rounded',
         appearance === 'secondary' && 'p-2',
         appearance === 'icon' && 'w-4 h-4',
         rounded && 'w-16 h-16 rounded-full p-4'
