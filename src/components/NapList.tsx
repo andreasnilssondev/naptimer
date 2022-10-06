@@ -11,7 +11,7 @@ export function NapList(props: NapListProps) {
   const { naps } = useNaps();
 
   return (
-    <ul className="mb-32 flex flex-col gap-y-4">
+    <ul className="mb-32 mx-4 flex flex-col gap-y-4">
       {naps
         .filter(({ start }) => isSameDay(start, date))
         .map(nap => (

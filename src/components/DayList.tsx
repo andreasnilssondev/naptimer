@@ -18,11 +18,11 @@ export function DayList() {
   ];
 
   return (
-    <div className="flex justify-around items-center -mt-4 -mx-4 mb-4 p-4 bg-gray-50">
-      <div className="flex-grow flex-shrink-0 basis-auto flex justify-end items-center">
+    <div className="flex justify-center items-center gap-x-2 mb-4 p-4 bg-gray-50">
+      <div>
         <PreviousButton />
       </div>
-      <div className="flex-grow-0 flex-shrink overflow-x-hidden flex justify-center items-center">
+      <div className="overflow-x-hidden">
         <ul className="flex justify-center items-center w-full">
           {dates.map(date => (
             <li key={date.toString()}>
@@ -31,7 +31,7 @@ export function DayList() {
           ))}
         </ul>
       </div>
-      <div className="flex-grow flex-shrink-0 basis-auto flex justify-start items-center">
+      <div>
         <NextButton />
       </div>
     </div>
