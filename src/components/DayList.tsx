@@ -23,7 +23,7 @@ export function DayList() {
         <PreviousButton />
       </div>
       <div className="flex-grow-0 flex-shrink overflow-x-hidden">
-        <ul className="flex justify-center items-center gap-x-4 w-full">
+        <ul className="flex justify-center items-center w-full">
           {dates.map(date => (
             <li key={date.toString()}>
               <Day date={date} />
