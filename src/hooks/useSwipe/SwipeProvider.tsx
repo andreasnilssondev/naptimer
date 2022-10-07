@@ -37,7 +37,6 @@ export function SwipeProvider(props: SwipeProviderProps) {
   };
 
   const onTransitionEnd = () => {
-    console.log('transitionEnd');
     setPercentageSwiped(0);
     setTransitionInProgress(false);
   };
