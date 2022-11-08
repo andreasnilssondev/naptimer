@@ -1,8 +1,10 @@
 # naptimer
 
-Keep track of your baby's naps. 
+Easily keep track of your baby's naps.
 
-Private data. No cookies, tracking, or data shared anywhere. Everything is stored on your device only.
+No cookies, tracking, or data shared anywhere. Everything is stored on your own device only. Layout best suited for mobile devices.
+
+I built this for my own needs so it only has the features that I needed.
 
 https://naptimer.netlify.app/
 
