@@ -1,8 +1,8 @@
 # naptimer
 
-Keep track of your baby's naps. Nothing is tracked or saved anywhere else than on your device.
+Keep track of your baby's naps. 
 
-For easy and offline access, save the website shortcut to your phone's home screen.
+🍪 No cookies, no tracking. All data is stored on your device only.
 
 https://naptimer.netlify.app/
 
