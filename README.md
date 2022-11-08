@@ -2,7 +2,7 @@
 
 Keep track of your baby's naps. 
 
-No cookies, no tracking, and no data shared. All data is stored on your device only.
+Private data. No cookies, tracking, or data shared anywhere. All data is stored on your device only.
 
 https://naptimer.netlify.app/
 
