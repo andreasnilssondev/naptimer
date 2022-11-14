@@ -16,6 +16,7 @@
     "react-icons": "^4.4.0"
   },
   "devDependencies": {
+    "@andreasnilssondev/eslint-config": "^2.0.0",
     "@types/node": "^18.7.16",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
